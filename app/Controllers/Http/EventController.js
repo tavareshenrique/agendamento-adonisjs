@@ -34,7 +34,12 @@ class EventController {
 
   async update ({ params, request, response }) {}
 
-  async destroy ({ params, request, response }) {}
+  async destroy ({ params }) {
+    console.log('passei aqui')
+    const event = await Event.findOrFail(params.id)
+
+    await event.delete()
+  }
 }
 
 module.exports = EventController
