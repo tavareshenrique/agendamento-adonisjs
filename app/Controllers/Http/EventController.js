@@ -3,13 +3,21 @@
 const Event = use('App/Models/Event')
 
 class EventController {
-  async index ({ params }) {
+  async index ({ params, request }) {
+    let where = {}
+
+    if (request.get().date) {
+      const date = request.get().date
+
+      where = { user_id: params.users_id, date }
+    } else {
+      where = { user_id: params.users_id }
+    }
+
     const events = await Event.query()
-      .where('user_id', params.users_id)
+      .where(where)
       .with('user')
       .fetch()
-
-    console.log(events)
 
     return events
   }
