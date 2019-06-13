@@ -4,6 +4,12 @@
 const Model = use('Model')
 
 class Event extends Model {
+  static boot () {
+    super.boot()
+
+    this.addHook('afterCreate', 'MailHook.sendEventMail')
+  }
+
   user () {
     return this.belongsTo('App/Models/User')
   }

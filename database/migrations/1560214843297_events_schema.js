@@ -18,6 +18,7 @@ class EventsSchema extends Schema {
       table.string('location', 254).notNullable()
       table.date('date').notNullable()
       table.time('time').notNullable()
+      table.string('guest_email', 100)
       table.timestamps()
     })
   }

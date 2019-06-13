@@ -23,7 +23,13 @@ class EventController {
   }
 
   async store ({ request, params }) {
-    const data = request.only(['title', 'location', 'date', 'time'])
+    const data = request.only([
+      'title',
+      'guest_email',
+      'location',
+      'date',
+      'time'
+    ])
 
     const user = await Event.create({ ...data, user_id: params.users_id })
 
